@@ -1,5 +1,5 @@
 #include "detector.h"
-#include <vector>
+#include "vector.h"
 #include <cctype>
 
 using namespace std;
@@ -14,7 +14,7 @@ vector<string> tokenize(string exp)
     vector<string> tokens;
     string temp = "";
 
-    for (char ch : exp)
+    for (char ch : exp)    
     {
         if (ch == ' ')
         {
