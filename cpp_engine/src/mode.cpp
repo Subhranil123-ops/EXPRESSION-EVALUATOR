@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-bool isCodeInput(string &input)
+bool isCodeInput(const string &input)
 {
     int n = input.length();
     string word = "";

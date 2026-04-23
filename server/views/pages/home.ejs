@@ -1,14 +1,115 @@
-<%layout("layouts/boilerplate.ejs")%>
-    <%title="Coding Analyzer with Expression Evaluator"%>
+<% layout("layouts/boilerplate.ejs") %>
+<% title = "Coding Analyzer with Expression Evaluator" %>
 
-        <div class="row">
-            <div class="col">
-                <h1>Expression & Code Analyzer</h1>
-                <p>
-                    Convert expressions (Infix, Prefix, Postfix) <br>
-                    OR analyze code complexity and nesting
+<style>
+    body {
+        background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    }
+
+    
+    .hero-title {
+        letter-spacing: -0.5px;
+    }
+
+    .hero-subtext {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    
+    .btn-custom {
+        border-radius: 12px;
+        transition: all 0.25s ease;
+    }
+
+    .btn-custom:hover {
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    
+    .feature-card {
+        border-radius: 16px;
+        transition: all 0.25s ease;
+        background: white;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    
+    .feature-icon {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container mt-5">
+
+    
+    <div class="text-center py-5">
+
+        <h1 class="display-4 fw-bold text-primary mb-3 hero-title">
+            Expression & Code Analyzer
+        </h1>
+
+        <p class="lead text-muted mb-4 hero-subtext">
+            Convert expressions (Infix, Prefix, Postfix) or analyze code complexity and nesting — all in one place.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+            <a href="/expression">
+                <button class="btn btn-success btn-lg px-4 shadow btn-custom">
+                    ⚡ Expression Tool
+                </button>
+            </a>
+
+            <a href="/analyze">
+                <button class="btn btn-outline-primary btn-lg px-4 shadow-sm btn-custom">
+                    💻 Code Analyzer
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+    
+    <div class="row mt-5 text-center">
+
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4 feature-card">
+                <div class="feature-icon text-success">⚙️</div>
+                <h5 class="fw-bold">Expression Conversion</h5>
+                <p class="text-muted">
+                    Easily convert between Prefix, Infix and Postfix formats.
                 </p>
-                <a href="/expression" ><button class="btn btn-primary">Expression Tool</button></a>
-                <a href="/analyze" ><button class="btn btn-primary">Code Analyze</button></a>
             </div>
         </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4 feature-card">
+                <div class="feature-icon text-primary">🧠</div>
+                <h5 class="fw-bold">Code Analysis</h5>
+                <p class="text-muted">
+                    Detect loops, conditions, and measure nesting depth.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm h-100 p-4 feature-card">
+                <div class="feature-icon text-warning">📊</div>
+                <h5 class="fw-bold">Complexity Estimation</h5>
+                <p class="text-muted">
+                    Instantly estimate time complexity of your code.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

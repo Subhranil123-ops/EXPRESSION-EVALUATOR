@@ -1,5 +1,6 @@
 #include "stack.h"
 #include "evaluator.h"
+#include <stdexcept>
 using namespace std;
 
 // precedence logic
@@ -17,8 +18,8 @@ string infixToPostfix(string exp)
 {
     if (exp.empty())
     {
-        cout << "Please input an expression\n";
-        return "";
+        throw invalid_argument("Invalid Expression");
+         
     }
 
     Stack<char> s;
@@ -44,8 +45,8 @@ string infixToPostfix(string exp)
         }
         else if (isalpha(ch))
         {
-            cout << "Invalid Expression\n";
-            return "";
+            throw invalid_argument("Invalid Expression");
+             
         }
 
         // operator
@@ -65,8 +66,8 @@ string infixToPostfix(string exp)
                 // if empty it means that balanced parenthesis is not there in the exp....
                 if (s.isEmpty())
                 {
-                    cout << "Invalid Expression\n";
-                    return "";
+                    throw invalid_argument("Invalid Expression");
+                     
                 }
                 s.pop(); // remove ( at last when the top is (
             }
@@ -88,8 +89,8 @@ string infixToPostfix(string exp)
     {
         if (s.peek() == '(')
         {
-            cout << "Invalid Expression\n";
-            return "";
+            throw invalid_argument("Invalid Expression");
+             
         }
         ans += s.peek();
         ans += ' ';
@@ -129,8 +130,8 @@ string postfixToInfix(string exp)
             // if in stack there are less than two operands then invalid
             if (s.size() < 2)
             {
-                cout << "Invalid Expression\n";
-                return "";
+                throw invalid_argument("Invalid Expression");
+                 
             }
 
             string op2 = s.peek();
@@ -143,16 +144,16 @@ string postfixToInfix(string exp)
         // invlaid characters like $ % & #
         else
         {
-            cout << "Invalid Expression\n";
-            return "";
+            throw invalid_argument("Invalid Expression");
+             
         }
     }
 
     // at last the size of the stack should be 1 (the result)
     if (s.size() != 1)
     {
-        cout << "Invalid Expression\n";
-        return "";
+       throw invalid_argument("Invalid Expression");
+         
     }
     return s.peek();
 }
@@ -185,8 +186,8 @@ string postfixToPrefix(string exp)
         {
             if (s.size() < 2)
             {
-                cout << "Invalid Expression\n";
-                return "";
+                throw invalid_argument("Invalid Expression");
+                 
             }
             string op2 = s.peek();
             s.pop();
@@ -197,15 +198,14 @@ string postfixToPrefix(string exp)
         }
         else
         {
-            cout << "Invalid Expression\n";
-            return "";
+            throw invalid_argument("Invalid Expression");
+             
         }
     }
 
     if (s.size() != 1)
     {
-        cout << "Invalid Expression\n";
-        return "";
+        throw invalid_argument("Invalid Expression");
     }
     return s.peek();
 }
@@ -240,7 +240,7 @@ string prefixToPostfix(string exp)
         {
             if (s.size() < 2)
             {
-                cout << "Invalid Expression\n";
+                throw invalid_argument("Invalid Expression");
                  "";
             }
             string op1 = s.peek();
@@ -254,16 +254,13 @@ string prefixToPostfix(string exp)
         // handling unwanted symbols
         else
         {
-            cout << "Invalid Expression\n";
-            return "";
+            throw invalid_argument("Invalid Expression");
         }
     }
 
     if (s.size() != 1)
     {
-        cout << "Invalid Expression\n";
-        return "";
+        throw invalid_argument("Invalid Expression");
     }
-
     return s.peek();
 }

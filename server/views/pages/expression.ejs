@@ -1,18 +1,134 @@
-<%layout("layouts/boilerplate")%>
-<%title="Evaluate and Convert Expression"%>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6">
-            <div class="card p-4">
+<%layout("layouts/boilerplate") %>
+<% title="Expression Evaluator" %>
+
+<style>
+    .expression-box {
+        font-family: 'Courier New', monospace;
+        font-size: 1.05rem;
+        padding: 12px;
+        border-radius: 10px;
+        background: #f8f9fa;
+        white-space: pre-wrap;
+        word-break: break-word;
+        line-height: 1.6;
+    }
+
+    .card-hover {
+        transition: all 0.2s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    textarea:focus {
+        box-shadow: 0 0 0 0.15rem rgba(13,110,253,.25);
+        border-color: #0d6efd;
+    }
+</style>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-7">
+
+        <% if(error){ %>
+        <div class="alert alert-danger text-center position-relative shadow-sm">
+            <button type="button" class="btn-close position-absolute start-0 ms-3" data-bs-dismiss="alert"></button>
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+            <%= error %>
+        </div>
+        <% } %>
+
+        <!-- FORM -->
+        <div class="card shadow-lg border-0 rounded-4 card-hover">
+            <div class="card-body p-4">
+
+                <h2 class="text-center mb-3 fw-bold text-primary">
+                    Expression Evaluator ⚡
+                </h2>
+
+                <p class="text-center text-muted mb-4" style="font-size: 0.9rem;">
+                    Supports infix, prefix & postfix expressions
+                </p>
+
                 <form action="/expression" method="POST">
-                    <h2 class="text-center mb-4">Expression Evaluator</h2>
+
                     <div class="mb-3">
-                        <label class="form-label">Enter Expression</label>
-                        <textarea class="form-control" rows="3" name="expression"></textarea>
+                        <label class="form-label fw-semibold">
+                            Enter Expression
+                        </label>
+
+                        <textarea 
+                            class="form-control font-monospace" 
+                            rows="3" 
+                            name="expression"
+                            placeholder="Example: 5 6 2 * + 3 -"
+                            required
+                        ></textarea>
                     </div>
-                    <div class="text-center">
-                      <button class="btn btn-success" type="submit">Convert</button>
+
+                    <div class="d-grid">
+                        <button class="btn btn-success fw-semibold py-2">
+                            Evaluate 🚀
+                        </button>
                     </div>
+
                 </form>
             </div>
         </div>
+
+        <!-- OUTPUT -->
+        <% if (data) { %>
+        <div class="card shadow mt-4 border-0 rounded-4 card-hover">
+            <div class="card-body">
+
+                <h4 class="text-center mb-4 text-success fw-bold">
+                    Result
+                </h4>
+
+                <div class="row text-center g-3">
+
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded h-100">
+                            <h6 class="text-muted">Prefix</h6>
+                            <div class="expression-box text-primary fw-bold">
+                                <%= data.prefix %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded h-100">
+                            <h6 class="text-muted">Infix</h6>
+                            <div class="expression-box text-warning fw-bold">
+                                <%= data.infix %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded h-100">
+                            <h6 class="text-muted">Postfix</h6>
+                            <div class="expression-box text-info fw-bold">
+                                <%= data.postfix %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 bg-dark text-white rounded h-100">
+                            <h6 class="text-light">Result</h6>
+                            <h3 class="fw-bold mb-0">
+                                <%= data.result %>
+                            </h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <% } %>
+
     </div>
+</div>

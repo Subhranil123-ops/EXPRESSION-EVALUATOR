@@ -1,0 +1,68 @@
+<style>
+    .footer-link {
+        color: #adb5bd;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        margin-bottom: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .footer-link::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #0d6efd;
+        transition: width 0.3s ease;
+    }
+
+    .footer-link:hover {
+        color: #fff;
+        transform: translateX(3px);
+    }
+
+    .footer-link:hover::after {
+        width: 100%;
+    }
+</style>
+
+<footer class="bg-dark text-light pt-5 pb-3 mt-4 container-fluid">
+
+    <div class="row px-5 justify-content-between text-center text-md-start">
+
+        <!-- Brand -->
+        <div class="col-md-4 mb-4">
+            <h4 class="fw-bold">MySite</h4>
+            <p class="text-secondary mb-0">Coding Analyzer Project 🚀</p>
+        </div>
+
+        <!-- Links -->
+        <div class="col-md-3 mb-4">
+            <h6 class="fw-semibold mb-3">Quick Links</h6>
+            <ul class="list-unstyled">
+                <li><a href="#" class="footer-link">Home</a></li>
+                <li><a href="#" class="footer-link">About</a></li>
+                <li><a href="#" class="footer-link">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Social -->
+        <div class="col-md-3 mb-4">
+            <h6 class="fw-semibold mb-3">Follow Me</h6>
+            <ul class="list-unstyled">
+                <li><a href="#" class="footer-link">LinkedIn</a></li>
+                <li><a href="#" class="footer-link">GitHub</a></li>
+                <li><a href="#" class="footer-link">Twitter</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="text-center border-top border-secondary pt-3 mt-3">
+        <p class="mb-0 small text-secondary">© 2026 All Rights Reserved</p>
+    </div>
+
+</footer>

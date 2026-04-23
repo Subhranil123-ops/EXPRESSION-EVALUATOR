@@ -1,6 +1,8 @@
 #include "Stack.h"
 #include <iostream>
 #include <cctype>
+#include <stdexcept>
+
 using namespace std;
 
 int postfixEvaluation(string exp)
@@ -30,11 +32,12 @@ int postfixEvaluation(string exp)
         else if (ch == '+' || ch == '-' || ch == '/' || ch == '*')
         {
             // if in stack there are less than two operands then invalid
+
             if (s.size() < 2)
             {
-                cout << "Invalid Expression\n";
-                return;
+                throw invalid_argument("Invalid Expression");
             }
+
             int result;
             int op2 = s.peek();
             s.pop();
@@ -50,8 +53,7 @@ int postfixEvaluation(string exp)
             {
                 if (op2 == 0)
                 {
-                    cout << "Invalid Expression\n";
-                    return;
+                    throw runtime_error("Division By Zero");
                 }
                 result = op1 / op2;
             }
@@ -61,16 +63,14 @@ int postfixEvaluation(string exp)
         // invlaid characters like $ % & #
         else
         {
-            cout << "Invalid Expression\n";
-            return;
+            throw invalid_argument("Invalid Expression");
         }
     }
 
     // at last the size of the stack should be 1 (the result)
     if (s.size() != 1)
     {
-        cout << "Invalid Expression\n";
-        return;
+        throw invalid_argument("Invalid Expression");
     }
     return s.peek(); // output
 }

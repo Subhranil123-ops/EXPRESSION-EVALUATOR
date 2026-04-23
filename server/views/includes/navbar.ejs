@@ -1,5 +1,64 @@
-<nav class="navbar bg-body-tertiary sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-    </div>
+<style>
+.nav-link {
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #0d6efd;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0d6efd;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-2 container-fluid">
+        <a class="navbar-brand fw-bold text-primary" href="/home">
+            CodeAnalyzer ⚡
+        </a>
+
+       
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+            <ul class="navbar-nav gap-2">
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="/home">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="/expression">
+                        Expression
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="/analyze">
+                        Analyze
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    
 </nav>

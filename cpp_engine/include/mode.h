@@ -4,6 +4,6 @@
 #include <string>
 using namespace std;
 
-bool isCodeInput(string &input);
+bool isCodeInput(const string &input);
 
 #endif
