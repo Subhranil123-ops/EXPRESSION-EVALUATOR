@@ -1,5 +1,5 @@
 #include "detector.h"
-#include "vector.h"
+#include "Myvector.h"
 #include <cctype>
 
 using namespace std;
@@ -9,9 +9,9 @@ bool isOperator(string s)
     return s == "+" || s == "-" || s == "*" || s == "/";
 }
 
-vector<string> tokenize(string exp)
+Myvector<string> tokenize(string exp)
 {
-    vector<string> tokens;
+    Myvector<string> tokens;
     string temp = "";
 
     for (char ch : exp)    
@@ -41,7 +41,7 @@ Type detectType(string exp)
     if (exp.empty())
         return INVALID;
 
-    vector<string> tokens = tokenize(exp);
+    Myvector<string> tokens = tokenize(exp);
 
     if (tokens.size() == 1)
     {

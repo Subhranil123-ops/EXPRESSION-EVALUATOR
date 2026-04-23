@@ -1,11 +1,11 @@
-#include "vector.h"
+#include "Myvector.h"
 #include <iostream>
 #include <cctype>
 using namespace std;
 
-vector<int> analyzeCode(string code)
+Myvector<int> analyzeCode(string code)
 {
-    vector<int> result;
+    Myvector<int> result;
     int forCount = 0, ifCount = 0, elseCount = 0, whileCount = 0, currDepth = 0, activeLoops = 0, maxDepth = 0;
     int n = code.length();
     bool inString = false;

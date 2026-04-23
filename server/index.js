@@ -9,5 +9,6 @@ app.engine("ejs", engine);
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/", homePage);
 app.listen(port, () => console.log("The app is listening on the port : ", port));

@@ -1,5 +1,7 @@
+#define CROW_USE_ASIO
+#include "crow.h"
 #include <iostream>
-#include "vector.h"
+#include "Myvector.h"
 #include "detector.h"
 #include "converter.h"
 #include "evaluator.h"
@@ -23,72 +25,57 @@ string timeComplexity(int &depth)
 }
 int main()
 {
-    string exp, input = "";
-    cout << "Enter input(type END on new line to finish): ";
-
-    // mulitline input
-    while (true)
-    {
-        getline(cin, exp);
-        if (exp == "END")
-            break;
-        input += exp;
+    crow::SimpleApp app;
+    CROW_ROUTE(app, "/analyze").methods("POST"_method)([](const crow::request &req)
+                                                       {
+    auto body=crow::json::load(req.body);
+    if(!body){
+        return crow::response(400, "Invalid or empty JSON");
     }
-
+    if(!body.has("code")){
+        return crow::response(400,"MISSING CODE FIELD");
+    }
+    if(body["code"].t()!=crow::json::type::String){
+        return crow::response(400,"CODE FIELD MUST BE A STRING");
+    }
+    auto input = body["code"].s();
     if (isCodeInput(input))
     {
-        vector<int> result = analyzeCode(input);
-
-        cout << "\n--- CODE ANALYSIS ---\n";
-        cout << "For: " << result[0] << endl;
-        cout << "If: " << result[1] << endl;
-        cout << "Else: " << result[2] << endl;
-        cout << "While: " << result[3] << endl;
-        cout << "Max Depth: " << result[4] << endl;
-
-        cout << "Estimated Complexity: " << timeComplexity(result[4]) << endl;
-    }
-    else
+        Myvector<int> result = analyzeCode(input);
+        string output = "";
+        output += "for : " + to_string(result[0]) + "\n";
+        output += "if : " + to_string(result[1]) + "\n";
+        output += "else : " + to_string(result[2]) + "\n";
+        output += "while : " + to_string(result[3]) + "\n";
+        output += "Max Depth : " + to_string(result[4]) + "\n";
+        string complexity = timeComplexity(result[4]);
+        output += "Estimated Complexity: : " + complexity + "\n";
+        return crow::response(200,output);
+    }else
     {
         Type t = detectType(input);
 
         if (t == INVALID)
-        {
-            cout << "Invalid Expression\n";
-            return 0;
-        }
-
+            return crow::response(400, "Invalid expression type. Please provide a valid infix, prefix, or postfix expression.");
         string postfix;
 
         if (t == INFIX)
-        {
             postfix = infixToPostfix(input);
-        }
         else if (t == PREFIX)
-        {
             postfix = prefixToPostfix(input);
-        }
         else
-        {
             postfix = exp;
-        }
 
         if (postfix == "")
-        {
-            cout << "Conversion failed\n";
-            return 0;
-        }
+            return crow::response(400, "Conversion failed. Please check your expression and try again.");
+        string output = "";
+        output += "Postfix : " + postfix + "\n";
+        output += "Infix: " + postfixToInfix(postfix) + "\n";
+        output += "Prefix: " + postfixToPrefix(postfix) + "\n";
+        output += "Result : " + to_string(postfixEvaluation(postfix)) + "\n";
+        return crow::response(200, output);
+    } });
 
-        cout << "\n--- OUTPUT ---\n";
-        cout << "Postfix: " << postfix << endl;
-
-        cout << "Infix: " << postfixToInfix(postfix) << endl;
-
-        cout << "Prefix: " << postfixToPrefix(postfix) << endl;
-
-        cout << "Result: ";
-        postfixEvaluation(postfix);
-    }
-
+    app.port(5000).multithreaded().run();
     return 0;
 }

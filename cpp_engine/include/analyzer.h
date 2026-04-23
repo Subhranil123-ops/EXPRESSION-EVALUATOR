@@ -1,6 +1,7 @@
 #ifndef ANALYZER_H
 #define ANALYZER_H
-#include "vector.h"
+#include "Myvector.h"
 #include <string>
-vector<int> analyzeCode(std::string code);
+Myvector<int> analyzeCode(std::string code);
 #endif
+

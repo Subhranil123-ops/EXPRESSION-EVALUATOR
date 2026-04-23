@@ -1,0 +1,18 @@
+<%layout("layouts/boilerplate")%>
+<%title="Evaluate and Convert Expression"%>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <form action="/expression" method="POST">
+                    <h2 class="text-center mb-4">Expression Evaluator</h2>
+                    <div class="mb-3">
+                        <label class="form-label">Enter Expression</label>
+                        <textarea class="form-control" rows="3" name="expression"></textarea>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-success" type="submit">Convert</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -3,6 +3,6 @@
 
 #include <string>
 
-void postfixEvaluation(std::string exp);
+int postfixEvaluation(std::string exp);
 
 #endif

@@ -1,17 +1,17 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef MYVECTOR_H
+#define MYVECTOR_H
 
 #include <iostream>
 
 template <class T>
-class vector
+class Myvector
 {
     int capacity;
     T *arr;
     int sz;
 
 public:
-    vector()
+    Myvector()
     {
         capacity = 1;
         sz = 0;
@@ -74,7 +74,7 @@ public:
         return sz;
     }
 
-    ~vector()
+    ~Myvector()
     {
         if (arr != nullptr)
         {

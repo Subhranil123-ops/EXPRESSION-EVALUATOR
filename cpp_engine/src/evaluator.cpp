@@ -3,7 +3,7 @@
 #include <cctype>
 using namespace std;
 
-void postfixEvaluation(string exp)
+int postfixEvaluation(string exp)
 {
     Stack<int> s;
     int len = exp.length();
@@ -72,6 +72,5 @@ void postfixEvaluation(string exp)
         cout << "Invalid Expression\n";
         return;
     }
-    cout << s.peek() << "\n"; // output
+    return s.peek(); // output
 }
-
