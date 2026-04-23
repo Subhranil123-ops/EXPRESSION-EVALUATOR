@@ -189,15 +189,6 @@ npm install
 
 ---
 
-### 🔹 3. Setup environment variables
-
-Create a `.env` file:
-
-```env
-API_URL=http://localhost:5000
-```
-
----
 
 ### 🔹 4. Run C++ Server
 
@@ -219,14 +210,24 @@ node index.js
 ### 🔹 6. Open in browser
 
 ```
-http://localhost:3000
+http://localhost:3000/home
 ```
 
 ---
 
 ## 📸 Screenshots
 
-(Add screenshots here)
+### 🏠 Homepage
+![Homepage](assets/screenshots/home.png)
+
+### 🧮 Expression Evaluator
+![Expression](assets/screenshots/expression.png)
+
+### 📊 Code Analyzer
+![Analyzer](assets/screenshots/analyzer.png)
+
+### ⚠️ Error Handling
+![Error](assets/screenshots/error.png)
 
 ---
 
