@@ -39,7 +39,7 @@ Myvector<string> tokenize(string exp)
 Type detectType(string exp)
 {
     if (exp.empty())
-        return INVALID;
+        return INVALID;   
 
     Myvector<string> tokens = tokenize(exp);
 

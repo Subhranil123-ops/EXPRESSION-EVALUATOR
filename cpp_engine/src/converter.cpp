@@ -66,7 +66,7 @@ string infixToPostfix(string exp)
                 // if empty it means that balanced parenthesis is not there in the exp....
                 if (s.isEmpty())
                 {
-                    throw invalid_argument("Invalid Expression");
+                    throw invalid_argument("Balanced Parenthesis!!");
                      
                 }
                 s.pop(); // remove ( at last when the top is (
@@ -89,7 +89,7 @@ string infixToPostfix(string exp)
     {
         if (s.peek() == '(')
         {
-            throw invalid_argument("Invalid Expression");
+            throw invalid_argument("Balanced Parenthesis!!");
              
         }
         ans += s.peek();
@@ -241,7 +241,6 @@ string prefixToPostfix(string exp)
             if (s.size() < 2)
             {
                 throw invalid_argument("Invalid Expression");
-                 "";
             }
             string op1 = s.peek();
             s.pop();
@@ -254,7 +253,7 @@ string prefixToPostfix(string exp)
         // handling unwanted symbols
         else
         {
-            throw invalid_argument("Invalid Expression");
+            throw invalid_argument("Invalid Symbols!!");     
         }
     }
 
